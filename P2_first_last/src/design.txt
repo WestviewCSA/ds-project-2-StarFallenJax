@@ -1,0 +1,18 @@
+
+Design Plan - P2
+Due: 3/12/25 11:59pm
+
+After reading the specs, start populating
+a list of things you might have to do to
+finish this project.
+
+1)  Read the specs - understand the project
+2)  Queues
+3)  Stacks
+4)  Exceptions
+5)  2D arrays
+6)  Coordinate system
+7)  Runtime calculation
+8)  Test files
+9)  Switches
+10) Scanning
