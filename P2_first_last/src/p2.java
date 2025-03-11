@@ -1,60 +1,73 @@
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.*;
 
 public class p2 {
 
 	public static void main(String[] args) {
-		//make sure there are correct arguments
-		if(args.length < 2) {
-			System.out.println("Usage: java p2 --Stack|--Queue|--Opt filename");
-			System.exit(-1);
-		}
+	
+        Scanner scanner = new Scanner(System.in);
+
+        //ask the user to choose a solver
+        System.out.println("Choose a solver method: (1) Stack (DFS), (2) Queue (BFS), (3) Optimal (Shortest Path)");
+        int solverChoice;
+        while (true) {
+            System.out.print("Enter choice (1/2/3): ");
+            if (scanner.hasNextInt()) {
+                solverChoice = scanner.nextInt();
+                if (solverChoice >= 1 && solverChoice <= 3) break;
+            }
+            scanner.nextLine(); //clear invalid input
+            System.out.println("Invalid input. Please enter 1, 2, or 3.");
+        }
+
+        //ask if the input file uses coordinate format
+        System.out.print("Is the input file in coordinate format? (yes/no): ");
+        boolean isCoordinateFormat = scanner.next().trim().equalsIgnoreCase("yes");
+
+        //ask for the filename
+        System.out.print("Enter the maze filename: ");
+        String filename = scanner.next();
 		
-		//check which solver to use
-		boolean useStack = Arrays.asList(args).contains("--Stack");
-		boolean useQueue = Arrays.asList(args).contains("--Queue");
-		boolean useOpt = Arrays.asList(args).contains("--Opt");
-		boolean isCoordinateFormat = Arrays.asList(args).contains("--Incoordinate");
-		
-		//make sure only one solver is selected
-		if((useStack ? 1 : 0) + (useQueue ? 1 : 0) + (useOpt ? 1 : 0) != 1) {
-			System.out.println("Error: Specify exactly one of --Stack, --Queue, or --Opt.");
-			System.exit(-1);
-		}
+
 		
 		
-		try {
-			
-			//load the maze
-			Maze maze = new Maze(args[args.length - 1], isCoordinateFormat);
-			
-			//select the appropriate solver
-			Solver solver = useStack ? new StackSolver(maze) :
-							useQueue ? new QueueSolver(maze) :
-							new OptimalSolver(maze);
-			
-			//calculate time
-			long startTime = System.nanoTime();
-			List<Position> solution = solver.findPath();
-			long endTime = System.nanoTime();
-			
-			//print solution/failure
-			if(solution.isEmpty()) {
-				System.out.println("The Wolverine Store is closed.");
-			} else {
-				for (Position pos : solution) {
-					System.out.println("+ " + pos.row + " " + pos.col);
-				}
-			}
-			
-			//print runtime if the flag is set
-			if(Arrays.asList(args).contains("--Time")) {
-				System.out.printf("Total Runtime: %.6f seconds\n", (endTime - startTime) / 1e9);
-			}
-				
-		} catch(IOException e) {
-			System.err.println("Error loading maze: " + e.getMessage());
-		}
-	}
+        try {
+            //load the maze
+            Maze maze = new Maze(filename, isCoordinateFormat);
+            System.out.println("Maze loaded successfully!");
+
+            //choose the appropriate solver
+            Solver solver = switch (solverChoice) {
+                case 1 -> new StackSolver(maze);  //DFS
+                case 2 -> new QueueSolver(maze);  //BFS
+                case 3 -> new OptimalSolver(maze); //Shortest Path
+                default -> throw new IllegalStateException("Unexpected value: " + solverChoice);
+            };
+
+            //measure execution time
+            long startTime = System.nanoTime();
+            var solution = solver.findPath();
+            long endTime = System.nanoTime();
+
+            //display results
+            if (solution.isEmpty()) {
+                System.out.println("The Wolverine Store is closed.");
+            } else {
+                System.out.println("Solution Path:");
+                for (Position pos : solution) {
+                    System.out.println("+ " + pos.row + " " + pos.col);
+                }
+            }
+
+            //print runtime
+            System.out.printf("Total Runtime: %.6f seconds\n", (endTime - startTime) / 1e9);
+
+        } catch (IOException e) {
+            System.err.println("Error loading maze: " + e.getMessage());
+        }
+
+        scanner.close(); //close scanner
+    }
 
 }
