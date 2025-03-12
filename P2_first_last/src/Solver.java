@@ -1,6 +1,6 @@
 import java.util.*;
 
-//Abstract class for different maze-solving strategies	
+//abstract class for different maze-solving strategies	
 public abstract class Solver {
 	protected Maze maze; //reference to the maze
 	protected boolean[][] visited; //tracks visited positions

@@ -49,7 +49,6 @@ public class Maze {
 				
 				grid[i][j] = line.charAt(j);
 					
-				
                 //store important positions
                 if (grid[i][j] == 'W') {
                     start = new Position(i, j);
@@ -58,8 +57,6 @@ public class Maze {
                 } else if (grid[i][j] == '|') {
                     walkway = new Position(i, j);
                 }
-				
-				
 			}
 		}
 		
@@ -73,9 +70,41 @@ public class Maze {
      * @param filename: the name of the input file
      * @throws IOException if there is an issue reading the file
      */
-	private void loadFromCoordinates(String filename) throws IOException {
-		//read file and parse coordinate-based maze representation
-	}
+    private void loadFromCoordinates(String filename) throws IOException {
+        Scanner scanner = new Scanner(new File(filename));
+
+        //read the first line for the sauce
+        rows = scanner.nextInt();
+        cols = scanner.nextInt();
+        int numMazes = scanner.nextInt(); //not used yet
+        scanner.nextLine(); //move to the next line
+
+        //initialize the grid with empty spaces
+        grid = new char[rows][cols];
+        for (char[] row : grid) Arrays.fill(row, '.');
+
+        //read each coordinate line
+        while (scanner.hasNext()) {
+            char symbol = scanner.next().charAt(0);
+            int row = scanner.nextInt();
+            int col = scanner.nextInt();
+            int mazeLevel = scanner.nextInt(); //not used yet
+
+            //place the symbol in the grid
+            grid[row][col] = symbol;
+
+            //store important positions
+            if (symbol == 'W') {
+                start = new Position(row, col);
+            } else if (symbol == '$') {
+                goal = new Position(row, col);
+            } else if (symbol == '|') {
+                walkway = new Position(row, col);
+            }
+        }
+
+        scanner.close();
+    }
 	
 	
     /*
