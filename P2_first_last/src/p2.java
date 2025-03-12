@@ -15,7 +15,9 @@ public class p2 {
             System.out.print("Enter choice (1/2/3): ");
             if (scanner.hasNextInt()) {
                 solverChoice = scanner.nextInt();
-                if (solverChoice >= 1 && solverChoice <= 3) break;
+                if (solverChoice >= 1 && solverChoice <= 3) {
+                	break;
+                }
             }
             scanner.nextLine(); //clear invalid input
             System.out.println("Invalid input. Please enter 1, 2, or 3.");
@@ -62,12 +64,16 @@ public class p2 {
 
             //print runtime
             System.out.printf("Total Runtime: %.6f seconds\n", (endTime - startTime) / 1e9);
+            
+            //maze.printMaze(); //debugging mayhaps
 
         } catch (IOException e) {
             System.err.println("Error loading maze: " + e.getMessage());
         }
 
         scanner.close(); //close scanner
+        
+      
     }
 
 }
