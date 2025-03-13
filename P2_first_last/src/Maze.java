@@ -108,10 +108,10 @@ public class Maze {
 	
 	
     /*
-     * checks if a given position is walkable.
-     * @param x: row index.
-     * @param y: column index.
-     * @return true if the position is not a wall ('@') and within bounds.
+     * checks if a given position is walkable
+     * @param x: row index
+     * @param y: column index
+     * @return true if the position is not a wall ('@') and within bounds
      */
 	public boolean isWalkable(int x, int y) {
 		return (x >= 0) && (x < rows) && (y >= 0) && (y < cols) && (grid[x][y] != '@');
@@ -119,13 +119,25 @@ public class Maze {
 	
 	
     /*
-     * prints the maze to the console for debugging
+     * marks the found path in the maze using '+'
+     * @param path The list of positions forming the solution path
      */
-	public void printMaze() {
-		for(char[] row : grid) {
-			System.out.println(new String(row));
-		}
-	}
+    public void markPath(List<Position> path) {
+        for (Position pos : path) {
+            if (grid[pos.row][pos.col] != 'W' && grid[pos.row][pos.col] != '$') {
+                grid[pos.row][pos.col] = '+'; //mark the path
+            }
+        }
+    }
+
+    /*
+     * prints the maze to the console for visualization
+     */
+    public void printMaze() {
+        for (char[] row : grid) {
+            System.out.println(new String(row));
+        }
+    }
 	
 
 }
