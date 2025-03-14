@@ -62,7 +62,7 @@ public class p2 {
                 }
             }
 
-            //print runtime
+            //print runtime for credit
             System.out.printf("Total Runtime: %.6f seconds\n", (endTime - startTime) / 1e9);
             
             if (solution.isEmpty()) {
