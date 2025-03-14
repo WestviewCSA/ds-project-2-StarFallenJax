@@ -80,7 +80,7 @@ public class p2 {
             System.err.println("Error loading maze: " + e.getMessage());
         }
 
-        scanner.close(); //close scanner
+        scanner.close(); 
         
         
       
