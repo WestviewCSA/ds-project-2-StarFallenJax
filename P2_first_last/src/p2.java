@@ -74,7 +74,7 @@ public class p2 {
             }
 
             
-            //maze.printMaze(); //debugging mayhaps
+    
 
         } catch (IOException e) {
             System.err.println("Error loading maze: " + e.getMessage());
