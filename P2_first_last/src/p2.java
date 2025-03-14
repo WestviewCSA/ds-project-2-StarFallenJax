@@ -65,6 +65,15 @@ public class p2 {
             //print runtime
             System.out.printf("Total Runtime: %.6f seconds\n", (endTime - startTime) / 1e9);
             
+            if (solution.isEmpty()) {
+                System.out.println("The Wolverine Store is closed.");
+            } else {
+                maze.markPath(solution); // Mark the path in the maze
+                System.out.println("\nSolved Maze:");
+                maze.printMaze(); // Print the updated maze with '+'
+            }
+
+            
             //maze.printMaze(); //debugging mayhaps
 
         } catch (IOException e) {
@@ -72,6 +81,7 @@ public class p2 {
         }
 
         scanner.close(); //close scanner
+        
         
       
     }
