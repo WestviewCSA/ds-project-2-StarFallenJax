@@ -7,8 +7,8 @@ public class QueueSolver extends Solver {
     }
 
     /*
-     * uses BFS (queue-based) to find the shortest path from Wolverine's start position to the goal.
-     * @return List of positions representing the shortest path, or an empty list if no path exists.
+     * uses BFS (queue-based) to find the shortest path from wolverine's start position to the goal
+     * @return List of positions representing the shortest path, or an empty list if no path exists
      */
     @Override
     public List<Position> findPath() {
