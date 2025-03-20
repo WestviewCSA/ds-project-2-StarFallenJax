@@ -16,7 +16,7 @@ public abstract class Solver {
 		this.path = new ArrayList<>();
 	}
 	
-    /**
+    /*
      * abstract method to find a path to the goal
      * @return list of positions forming the path
      */

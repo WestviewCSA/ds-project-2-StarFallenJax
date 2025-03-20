@@ -12,7 +12,7 @@ public class QueueSolver extends Solver {
      */
     @Override
     public List<Position> findPath() {
-        Queue<List<Position>> queue = new LinkedList<>(); // queue stores paths
+        Queue<List<Position>> queue = new LinkedList<>(); //queue stores paths
         List<Position> startPath = new ArrayList<>();
         startPath.add(maze.start);
         queue.add(startPath);
@@ -21,7 +21,7 @@ public class QueueSolver extends Solver {
 
         while (!queue.isEmpty()) {
             List<Position> path = queue.poll();
-            Position current = path.get(path.size() - 1); // Get last position
+            Position current = path.get(path.size() - 1); //get last position
 
             //if we reach the goal, return the path
             if (current.row == maze.goal.row && current.col == maze.goal.col) {
@@ -49,4 +49,3 @@ public class QueueSolver extends Solver {
         return new ArrayList<>();
     }
 }
-
