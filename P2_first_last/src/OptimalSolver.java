@@ -62,7 +62,7 @@ public class OptimalSolver extends Solver {
             current = parent[current.row][current.col];
         }
 
-        //add the start position manually
+       
         path.add(0, start);
         return path;
     }
