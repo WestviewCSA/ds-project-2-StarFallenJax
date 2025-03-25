@@ -43,7 +43,7 @@ public class p2 {
             Solver solver = switch (solverChoice) {
                 case 1 -> new StackSolver(maze);  //DFS
                 case 2 -> new QueueSolver(maze);  //BFS
-                case 3 -> new OptimalSolver(maze); //Shortest Path
+                case 3 -> new OptimalSolver(maze); //shortest Path
                 default -> throw new IllegalStateException("Unexpected value: " + solverChoice);
             };
 
@@ -68,9 +68,9 @@ public class p2 {
             if (solution.isEmpty()) {
                 System.out.println("The Wolverine Store is closed.");
             } else {
-                maze.markPath(solution); // Mark the path in the maze
+                maze.markPath(solution); // mark the path in the maze
                 System.out.println("\nSolved Maze:");
-                maze.printMaze(); // Print the updated maze with '+'
+                maze.printMaze(); // print the updated maze with '+'
             }
 
             
